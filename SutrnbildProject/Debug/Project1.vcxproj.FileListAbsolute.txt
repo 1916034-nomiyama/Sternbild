@@ -1,0 +1,4 @@
+C:\Users\瀧\Desktop\Project1(シューティング)\Debug\Project1.exe
+C:\Users\瀧\Desktop\Project1(シューティング)\Debug\Project1.pdb
+C:\Users\瀧\Desktop\Sutrnbild\SutrnbildProject\Debug\Project1.exe
+C:\Users\瀧\Desktop\Sutrnbild\SutrnbildProject\Debug\Project1.pdb
