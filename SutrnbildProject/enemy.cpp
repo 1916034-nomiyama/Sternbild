@@ -26,7 +26,7 @@ void EnemyInit(void)
 }
 void EnemyControl(void)
 {
-	/*
+	
 	//ç∂à⁄ìÆ
 	if (CheckHitKey(KEY_INPUT_LEFT) == 1)
 	{
@@ -59,7 +59,7 @@ void EnemyControl(void)
 			enemyPosY = enemyPosY + enemySpeed;
 		}
 	}
-	*/
+	
 
 }
 void EnemyDraw(void)

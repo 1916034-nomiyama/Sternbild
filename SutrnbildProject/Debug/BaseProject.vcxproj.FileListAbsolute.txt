@@ -2,3 +2,5 @@ E:\ゲームPG\Projectテスト用\BaseProject2\Debug\BaseProject.exe
 E:\ゲームPG\Projectテスト用\BaseProject2\Debug\BaseProject.pdb
 C:\Users\瀧\Desktop\BaseProject2\Debug\BaseProject.exe
 C:\Users\瀧\Desktop\BaseProject2\Debug\BaseProject.pdb
+C:\Users\瀧\Desktop\Sutrnbild\Sternbild\SutrnbildProject\Debug\BaseProject.exe
+C:\Users\瀧\Desktop\Sutrnbild\Sternbild\SutrnbildProject\Debug\BaseProject.pdb

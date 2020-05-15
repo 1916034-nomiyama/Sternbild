@@ -1,4 +1,7 @@
-﻿  enemy.cpp
+﻿  effect.cpp
+  enemy.cpp
+  KeyCheck.cpp
+  main.cpp
   player.cpp
   コードを生成中...
-  BaseProject.vcxproj -> C:\Users\瀧\Desktop\BaseProject2\Debug\BaseProject.exe
+  BaseProject.vcxproj -> C:\Users\瀧\Desktop\Sutrnbild\Sternbild\SutrnbildProject\Debug\BaseProject.exe
