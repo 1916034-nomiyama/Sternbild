@@ -1,3 +1,6 @@
-﻿  main.cpp
-C:\Users\瀧\Desktop\Sutrnbild\SutrnbildProject\main.cpp(27,1): warning C4007: 'WinMain': '__stdcall' でなければなりません。
-  Project1.vcxproj -> C:\Users\瀧\Desktop\Sutrnbild\SutrnbildProject\Debug\Project1.exe
+﻿  effect.cpp
+  keyCheck.cpp
+  player.cpp
+  コードを生成中...
+keyCheck.obj : error LNK2001: 外部シンボル ""int mouseButton" (?mouseButton@@3HA)" は未解決です。
+C:\Users\瀧\Desktop\Sutrnbild\Sternbild\SutrnbildProject\Debug\Project1.exe : fatal error LNK1120: 1 件の未解決の外部参照
