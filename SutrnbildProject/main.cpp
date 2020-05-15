@@ -1,44 +1,46 @@
-ï»¿///////////////////////////////////////////////////////////////
-//////////////////Sutrnbildï½æ˜Ÿåº§ã®å‹•ç‰©ãŸã¡ï½//////////////////
-///////////////////////////////////////////////////////////////
-//          <2020/05/14é–‹å§‹>ï½<2020/06/05çµ‚äº†äºˆå®š>
+//--------------------------------------------------------
+//
+//					main.cpp
+//
+//--------------------------------------------------------
 
-#include "Dxlib.h"				//DxLibï¾—ï½²ï¾Œï¾ï¾—ï¾˜ã‚’ä½¿ç”¨ã™ã‚‹
+#include "DxLib.h"					//DxLib×²ÌŞ×Ø‚ğg—p‚·‚é
 #include "main.h"
+#include "KeyCheck.h"
 #include "effect.h"
-#include "keyCheck.h"
 #include "player.h"
+#include "enemy.h"
+
+//•Ï”‚Ì’è‹`
+//--------------------------------------------------------
+//ƒV[ƒ“ŠÇ——p
+SCENE sceneID;						//Œ»İ‚ÌƒV[ƒ“
+SCENE preSceneID;					//‚Ğ‚Æ‚Â‘O‚ÌƒV[ƒ“
+int sceneCounter;					//ƒJƒEƒ“ƒ^[
 
 
 
-//-----å¤‰æ•°ã®å®šç¾©
-SCENE sceneID;						//ç¾åœ¨ã®ã‚·ãƒ¼ãƒ³
-SCENE preSceneID;					//ã²ã¨ã¤å‰ã®ã‚·ãƒ¼ãƒ³
-int sceneCounter;					//ã‚«ã‚¦ãƒ³ã‚¿ãƒ¼
 
-int titleImage;
-int gameoverImage;
-int hitstartkeyImage;
-
-
-//==========WinMain
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
 	SystemInit();
-	//----------ï½¹ï¾ï½°ï¾‘ï¾™ï½°ï¾Œï¾Ÿ
+
+	SetDrawScreen(DX_SCREEN_BACK);									//‚Ğ‚Æ‚Ü‚¸ÊŞ¯¸ÊŞ¯Ì§‚É•`‰æ
+
+	//¹Ş°ÑÙ°Ìß
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{
-	
 
-						//ç”»é¢æç”»å‡¦ç†
-		ClsDrawScreen();//æç”»ã®æ¶ˆå»
-						//èƒŒæ™¯ã®è¡¨ç¤º
-				//ã‚·ãƒ¼ãƒ³ã‚«ã‚¦ãƒ³ã‚¿ã®åˆæœŸåŒ–
+		ClsDrawScreen();				//‰æ–ÊÁ‹
+
+		//ƒV[ƒ“ƒJƒEƒ“ƒ^‚Ì‰Šú‰»
 		if (sceneID != preSceneID)
 		{
 			preSceneID = sceneID;
 			sceneCounter = 0;
 		}
+
+		KeyCheck();
 
 		switch (sceneID)
 		{
@@ -52,7 +54,7 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 			{
 				if (!FadeInScreen(5)) {}
 			}
-			else if (fadeOut)
+			else if(fadeOut)
 			{
 				if (!FadeOutScreen(5))
 				{
@@ -105,48 +107,53 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 
 		sceneCounter++;
+		PlayerControl();
+		EnemyControl();
 
 		ScreenFlip();
-
-		//æ•µã®è¡¨ç¤º
-
-
-		//ScreenFlip(); //è£ç”»é¢ã‚’è¡¨ç”»é¢ã«ç¬é–“ï½ºï¾‹ï¾Ÿï½°
 	}
-	DxLib_End();	//DXï¾—ï½²ï¾Œï¾ï¾—ï¾˜ã®çµ‚äº†å‡¦ç†
-	return 0;		//ã“ã®ï¾Œï¾Ÿï¾›ï½¸ï¾ï¾—ï¾‘ã®çµ‚äº†
+		DxLib_End();			//DX×²ÌŞ×Ø‚ÌI—¹ˆ—
+		return 0;				//‚±‚ÌÌßÛ¸Ş×Ñ‚ÌI—¹
 }
 
+//ƒVƒXƒeƒ€‚Ì‰Šú‰»
 bool SystemInit(void)
 {
-	bool retFlag = true;  //é–¢æ•°ã®æˆ»ã‚Šå€¤
 
-	//----------ï½¼ï½½ï¾ƒï¾‘å‡¦ç†
-	SetWindowText("Nakahara Yoshiharu");
-	//ï½¼ï½½ï¾ƒï¾‘å‡¦ç†
-	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, 16);		//640 * 480ï¾„ï¾ï½¯ï¾„65536è‰²ï¾“ï½°ï¾„ï¾ã«è¨­å®š
-	ChangeWindowMode(true);				//true:window  false:ï¾Œï¾™ï½½ï½¸ï¾˜ï½°ï¾
-	if (DxLib_Init() == -1) return -1;		//DXï¾—ï½²ï¾Œï¾ï¾—ï¾˜åˆæœŸåŒ–å‡¦ç†
-	SetDrawScreen(DX_SCREEN_BACK);			//ã²ã¨ã¾ãšï¾Šï¾ï½¯ï½¸ï¾Šï¾ï½¯ï¾Œï½§ã«æç”»
+	bool retFlag = true;  //ŠÖ”‚Ì–ß‚è’l
 
-	//----------ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ã®ç™»éŒ²----------
+	//----------¼½ÃÑˆ—
+	SetWindowText("1916030_’†Œ´‰pŠì");
+	SetGraphMode(SCREEN_SIZE_X, SCREEN_SIZE_Y, 16);					//800*320ÄŞ¯Ä65536FÓ°ÄŞ‚Éİ’è
+	ChangeWindowMode(true);											// true:window false:ÌÙ½¸Ø°İ
+	if (DxLib_Init() == -1)
+		return false;												//DX×²ÌŞ×Ø‰Šú‰»ˆ—
 
+	EffectInit();
+	KeyCheck();
+	PlayerSystemInit();
+	EnemySystemInit();
 
-	//----------å¤‰æ•°ã®åˆæœŸåŒ–----------
+	//ƒOƒ‰ƒtƒBƒbƒN‚Ì“o˜^
+
+	//---------------------
+
+	//•Ï”‚Ì‰Šú‰»
 	sceneCounter = 0;
 	preSceneID = SCENE_MAX;
 	sceneID = SCENE_TITLE;
 
-	//æ•µ
 
-	return false;
+
+	return retFlag;
+
 }
-//åˆæœŸåŒ–ã®ã‚·ãƒ¼ãƒ³
+//‰Šú‰»ƒV[ƒ“
 void InitScene(void)
 {
-
+	
 }
-//ã‚¿ã‚¤ãƒˆãƒ«ã‚·ãƒ¼ãƒ³
+//ƒ^ƒCƒgƒ‹ƒV[ƒ“
 void TitleScene(void)
 {
 	TitleDraw();
@@ -154,35 +161,36 @@ void TitleScene(void)
 	{
 		fadeOut = true;
 	}
-
 }
-//ã‚¿ã‚¤ãƒˆãƒ«ã®æç”»
+//ƒ^ƒCƒgƒ‹•`‰æ
 void TitleDraw(void)
 {
-	DrawGraph(0, 0, titleImage, true);
-	DrawFormatString(0, 0, 0xffffff, "Count:%d", sceneCounter);
 
+	DrawFormatString(0, 0, 0xffffff, "Count:%d", sceneCounter);
+	DrawBox(100, 100, SCREEN_SIZE_X - 100, SCREEN_SIZE_Y - 100, 0x00ffff, 1);
+	DrawFormatString(350, 300, 0x000000, "GAME START");
+	
 }
-//ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³
+//ƒQ[ƒ€ƒV[ƒ“
 void GameScene(void)
 {
 	if (keyDownTrigger[KEY_ID_P])
 	{
 		pauseFlag = !pauseFlag;
 	}
-	//Pauseæ™‚
+	//Pause
 	if (pauseFlag)
 	{
 		SetDrawBright(128, 128, 128);
 	}
-	//é€šå¸¸å‹•ä½œæ™‚
+	//’Êí“®ì
 	else
 	{
 		aaaa++;
 	}
-	//ç”»é¢æç”»
+	//‰æ–Ê•`‰æ
 	GameDraw();
-	//Pauseãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’æç”»
+	//PauseƒƒbƒZ[ƒW‚ğ•`‰æ
 	if (pauseFlag)
 	{
 		SetDrawBright(255, 255, 255);
@@ -192,16 +200,16 @@ void GameScene(void)
 	{
 		fadeOut = true;
 	}
-
 }
-//ã‚²ãƒ¼ãƒ ç”»é¢ã®æç”»
+//ƒQ[ƒ€ƒV[ƒ“•`‰æ
 void GameDraw(void)
 {
+	PlayerDraw();
+	EnemyDraw();
 	DrawFormatString(50, 50, 0xffff00, "%d", aaaa); ;
 	DrawFormatString(0, 0, 0xffffff, "Count:%d", sceneCounter);
-
 }
-//ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ã‚·ãƒ¼ãƒ³
+//ƒQ[ƒ€ƒI[ƒo[ƒV[ƒ“
 void GameOverScene(void)
 {
 	GameOverDraw();
@@ -209,12 +217,11 @@ void GameOverScene(void)
 	{
 		fadeOut = true;
 	}
-
 }
-//ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ã®æç”»
+//ƒQ[ƒ€ƒI[ƒo[ƒV[ƒ“•`‰æ
 void GameOverDraw(void)
 {
 	DrawFormatString(0, 0, 0xffffff, "Count:%d", sceneCounter);
-
+	DrawBox(100,100,SCREEN_SIZE_X-100,SCREEN_SIZE_Y-100,0xff00ff,1);
+	DrawFormatString(350,300,0xffffff,"GAME OVER");
 }
-

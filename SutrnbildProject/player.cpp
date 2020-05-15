@@ -1,35 +1,33 @@
-
-#include "Dxlib.h"				//DxLibﾗｲﾌﾞﾗﾘを使用する
+#include "DxLib.h"
 #include "main.h"
 #include "player.h"
 
-//自機
-int playerImage;				//ﾌﾟﾚｲﾔｰのｲﾒｰｼﾞ
-int playerPosX;					//ﾌﾟﾚｲﾔｰのX座標
-int playerPosY;					//ﾌﾟﾚｲﾔｰのY座標
-int playerSpeed;				//ﾌﾟﾚｲﾔｰの移動量
+#define PLAYER_SIZE_X 32
+#define PLAYER_SIZE_Y 32
+
+int playerImage;
+int playerPosX;
+int playerPosY;
+int playerSpeed;
 
 
-//自機のｼｽﾃﾑ処理の初期化
 void PlayerSystemInit(void)
 {
 	//自機
 	playerPosX = (SCREEN_SIZE_X) / 2 - (PLAYER_SIZE_X) / 2;
 	playerPosY = SCREEN_SIZE_Y - PLAYER_SIZE_Y;
 	playerSpeed = 8;
+	playerImage = LoadGraph("player.png");		//Imageの中にあるという意味で / 又は \ を付ける
 
 }
-//自機の初期化
 void PlayerInit(void)
 {
-	playerImage = LoadGraph("Image/player.png");		//Imageの中にあるという意味で / 又は \ を付ける
 
 }
-//自機の操作
 void PlayerControl(void)
 {
 	//------ﾌﾟﾚｲﾔｰのｷｰ操作
-//左移動
+	//左移動
 	if (CheckHitKey(KEY_INPUT_A) == 1)
 	{
 		if (playerPosX >= playerSpeed)
@@ -63,7 +61,6 @@ void PlayerControl(void)
 	}
 
 }
-//自機の描画
 void PlayerDraw(void)
 {
 	//プレイヤーの表示

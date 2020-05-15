@@ -6,7 +6,7 @@
 
 #include "DxLib.h"
 #include "main.h"
-#include "keyCheck.h"
+#include "KeyCheck.h"
 
 
 bool keyOld[KEY_ID_MAX];			//1フレーム前の入力状態
@@ -40,10 +40,10 @@ void KeyCheck(void)
 	}
 
 	keyNew[KEY_ID_SPACE] = CheckHitKey(KEY_INPUT_SPACE);
-	keyNew[KEY_ID_MOUSE_LEFT] = mouseButton & MOUSE_INPUT_LEFT;
-	keyNew[KEY_ID_MOUSE_MIDDLE] = mouseButton & MOUSE_INPUT_MIDDLE;
-	keyNew[KEY_ID_MOUSE_RIGHT] = mouseButton & MOUSE_INPUT_RIGHT;
-	keyNew[KEY_ID_P] = CheckHitKey(KEY_INPUT_P);
+	//keyNew[KEY_ID_MOUSE_LEFT] = mouseButton & MOUSE_INPUT_LEFT;
+	//keyNew[KEY_ID_MOUSE_MIDDLE] = mouseButton & MOUSE_INPUT_MIDDLE;
+	//keyNew[KEY_ID_MOUSE_RIGHT] = mouseButton & MOUSE_INPUT_RIGHT;
+	keyNew[KEY_ID_P]= CheckHitKey(KEY_INPUT_P);
 
 	//トリガーの算出
 	for (int keyID = 0; keyID < KEY_ID_MAX; keyID++)
