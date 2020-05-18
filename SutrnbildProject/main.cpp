@@ -18,6 +18,8 @@ SCENE sceneID;						//現在のシーン
 SCENE preSceneID;					//ひとつ前のシーン
 int sceneCounter;					//カウンター
 
+int titleImage;
+
 
 
 
@@ -107,8 +109,6 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
 
 		sceneCounter++;
-		PlayerControl();
-		EnemyControl();
 
 		ScreenFlip();
 	}
@@ -135,7 +135,7 @@ bool SystemInit(void)
 	EnemySystemInit();
 
 	//グラフィックの登録
-
+	titleImage = LoadGraph("bs1.jpg");
 	//---------------------
 
 	//変数の初期化
@@ -174,6 +174,9 @@ void TitleDraw(void)
 //ゲームシーン
 void GameScene(void)
 {
+	PlayerControl();
+	EnemyControl();
+
 	if (keyDownTrigger[KEY_ID_P])
 	{
 		pauseFlag = !pauseFlag;
@@ -206,7 +209,8 @@ void GameDraw(void)
 {
 	PlayerDraw();
 	EnemyDraw();
-	DrawFormatString(50, 50, 0xffff00, "%d", aaaa); ;
+	DrawGraph(50,50,titleImage,true);
+	DrawFormatString(50, 50, 0xffff00, "%d", aaaa); 
 	DrawFormatString(0, 0, 0xffffff, "Count:%d", sceneCounter);
 }
 //ゲームオーバーシーン

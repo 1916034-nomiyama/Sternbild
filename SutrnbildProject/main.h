@@ -5,6 +5,10 @@
 //-----------------------------------
 #define SCREEN_SIZE_X 800		//画面サイズ横
 #define SCREEN_SIZE_Y 600		//画面サイズ縦
+#define BG_SIZE_X     800
+#define BG_SIZE_Y	  600
+
+
 //列挙型
 //-----------------------------------
 enum SCENE

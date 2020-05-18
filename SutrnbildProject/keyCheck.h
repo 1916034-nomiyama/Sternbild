@@ -4,11 +4,11 @@
 //-----------------------------------
 enum KEY_ID
 {
-	KEY_ID_SPACE,				//スペースキー
-	KEY_ID_MOUSE_LEFT,			//マウス左ボタン
-	KEY_ID_MOUSE_MIDDLE,		//マウスホイールボタン
-	KEY_ID_MOUSE_RIGHT,			//マウス右ボタン
-	KEY_ID_P,
+	KEY_ID_SPACE,					//ショットの予定
+	//KEY_ID_MOUSE_LEFT,			//マウス左ボタン
+	//KEY_ID_MOUSE_MIDDLE,			//マウスホイールボタン
+	//KEY_ID_MOUSE_RIGHT,			//マウス右ボタン
+	KEY_ID_P,						//一時停止
 	KEY_ID_MAX
 };
 
