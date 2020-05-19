@@ -133,7 +133,6 @@ bool SystemInit(void)
 	KeyCheck();
 	PlayerSystemInit();
 	EnemySystemInit();
-
 	//グラフィックの登録
 	titleImage = LoadGraph("bs1.jpg");
 	//---------------------
@@ -151,7 +150,7 @@ bool SystemInit(void)
 //初期化シーン
 void InitScene(void)
 {
-	
+
 }
 //タイトルシーン
 void TitleScene(void)
