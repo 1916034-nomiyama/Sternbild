@@ -10,7 +10,7 @@ int playerPosX;
 int playerPosY;
 int playerSpeed;
 
-
+//システムの初期化
 void PlayerSystemInit(void)
 {
 	//自機
@@ -20,10 +20,12 @@ void PlayerSystemInit(void)
 	playerImage = LoadGraph("player.png");		//Imageの中にあるという意味で / 又は \ を付ける
 
 }
+//初期化用
 void PlayerInit(void)
 {
 
 }
+//操作用
 void PlayerControl(void)
 {
 	//------ﾌﾟﾚｲﾔｰのｷｰ操作
@@ -61,6 +63,7 @@ void PlayerControl(void)
 	}
 
 }
+//プレイヤーの描画
 void PlayerDraw(void)
 {
 	//プレイヤーの表示

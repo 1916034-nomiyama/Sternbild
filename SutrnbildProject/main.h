@@ -20,7 +20,8 @@ enum SCENE
 	SCENE_MAX
 };
 
-enum MOVE_DIR {
+enum MOVE_DIR 
+{
 	DIR_UP,
 	DIR_RIGHT,
 	DIR_DOWN,
@@ -43,17 +44,17 @@ struct XY
 
 struct CHARACTERS {
 	MOVE_DIR moveDir;	//向いている方向
-	XY pos;			//キャラクタの位置（中心）
-	XY size;		//キャラクタ画像のサイズ
+	XY pos;				//キャラクタの位置（中心）
+	XY size;			//キャラクタ画像のサイズ
 	XY sizeOffset;		//キャラクタ中央からの左上位置
-	XY hitPosS;		//当たり判定用の左上
-	XY hitPosE;		//当たり判定用の右下
+	XY hitPosS;			//当たり判定用の左上
+	XY hitPosE;			//当たり判定用の右下
 	bool runFlag;		//キャラクタの状態（走っているか？）
 	bool jumpFlag;		//キャラクタの状態（ジャンプしているか？）
 	bool shotFlag;		//キャラクタの状態（弾撃っているか？）
 	bool damageFlag;	//キャラクタの状態（ダメージ受けているか？）
 	int moveSpeed;		//キャラクタの移動量
-	int life;		//キャラクタの体力
+	int life;			//キャラクタの体力
 	int lifeMax;		//キャラクタの体力最大
 	int animCnt;		//キャラクタのアニメーション用カウンタ
 	int imgLockCnt;		//キャラクタのイメージ固定用カウンタ
@@ -62,8 +63,8 @@ struct CHARACTERS {
 //-----------------------------------
 bool SystemInit(void);			//システムの初期化
 void InitScene(void);			//初期化用シーン
-void TitleScene(void);			//セレクトシーン
-void TitleDraw(void);			//セレクトシーン描画
+void TitleScene(void);			//タイトルシーン
+void TitleDraw(void);			//タイトルシーン描画
 void GameScene(void);			//ゲームシーン
 void GameDraw(void);			//ゲームシーン描画
 void GameOverScene(void);		//ゲームオーバーシーン

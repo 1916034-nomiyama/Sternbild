@@ -10,6 +10,8 @@
 #include "effect.h"
 #include "player.h"
 #include "enemy.h"
+#include "shot.h"
+
 
 //•Ï”‚Ì’è‹`
 //--------------------------------------------------------
